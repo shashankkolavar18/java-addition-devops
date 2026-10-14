@@ -10,3 +10,4 @@ public class Addition {
         System.out.println("Addition result: " + result);
     }
 }
+// Testing automatic Jenkins build
