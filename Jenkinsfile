@@ -9,12 +9,11 @@ pipeline {
         PATH = "/opt/homebrew/bin:/opt/homebrew/opt/openjdk@21/bin:$PATH"
     }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+   stage('Build') {
+    steps {
+        sh '/opt/homebrew/bin/mvn clean compile'
+    }
+}
 
         stage('Test') {
             steps {
