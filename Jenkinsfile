@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -9,15 +10,22 @@ pipeline {
         PATH = "/opt/homebrew/bin:/opt/homebrew/opt/openjdk@21/bin:$PATH"
     }
 
-   stage('Build') {
-    steps {
-        sh '/opt/homebrew/bin/mvn clean compile'
-    }
-}
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '/opt/homebrew/bin/mvn clean compile'
+            }
+        }
 
         stage('Test') {
             steps {
-                sh '/opt/homebrew/bin/mvn clean test'
+                sh '/opt/homebrew/bin/mvn test'
             }
         }
 
@@ -35,13 +43,16 @@ pipeline {
     }
 
     post {
-    always {
-        junit 'target/surefire-reports/*.xml'
-    }
-    success {
-        echo 'Pipeline completed successfully!'
-    }
-    failure {
-        echo 'Pipeline failed. Check the console output.'
+        always {
+            junit 'target/surefire-reports/*.xml'
+        }
+
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+
+        failure {
+            echo 'Pipeline failed. Check the console output.'
+        }
     }
 }
