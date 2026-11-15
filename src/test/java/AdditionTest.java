@@ -1,5 +1,5 @@
-
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AdditionTest {
@@ -17,5 +17,10 @@ public class AdditionTest {
     @Test
     public void testAdditionWithNegativeNumbers() {
         assertEquals(-3, Addition.add(-5, 2));
+    }
+
+    @Test
+    public void testSubtraction() {
+        assertEquals(5, Addition.subtract(10, 5));
     }
 }
