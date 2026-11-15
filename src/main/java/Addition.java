@@ -17,3 +17,4 @@ public class Addition {
         System.out.println("Subtraction result: " + subtractionResult);
     }
 }
+// Testing automatic Jenkins trigger
